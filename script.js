@@ -1,6 +1,12 @@
 // script.js - Funciones JavaScript para todas las páginas
 
 // =============================================
+// VARIABLES GLOBALES
+// =============================================
+
+let usuarioNombreCompleto = '';
+
+// =============================================
 // FUNCIONES GENERALES
 // =============================================
 
@@ -27,9 +33,9 @@ function inicializarPaginaPrincipal() {
     
     // c. Dar la bienvenida al usuario y d. Mostrar nombre en página
     if(nombre && apellido) {
-        const nombreCompleto = `${nombre} ${apellido}`;
-        alert(`¡Hola ${nombreCompleto}! Bienvenido/a a nuestra página principal.`);
-        mostrarNombreUsuario(nombreCompleto);
+        usuarioNombreCompleto = `${nombre} ${apellido}`;
+        alert(`¡Hola ${usuarioNombreCompleto}! Bienvenido/a a nuestra página principal.`);
+        mostrarNombreUsuario(usuarioNombreCompleto);
     } else {
         alert("¡Bienvenido! Esperamos que disfrutes de nuestro sitio web.");
     }
@@ -49,6 +55,15 @@ function mostrarNombreUsuario(nombreCompleto) {
 
 function inicializarGaleria() {
     console.log("Inicializando galería...");
+    
+    // Mostrar mensaje de bienvenida personalizado
+    if(usuarioNombreCompleto) {
+        const userDisplay = document.getElementById('user-display-gallery');
+        if(userDisplay) {
+            userDisplay.innerHTML = 
+                `<div class="welcome-message">¡Bienvenido ${usuarioNombreCompleto} a la Galería!</div>`;
+        }
+    }
     
     // a. Mensaje de bienvenida
     alert("¡Bienvenido a nuestra galería de imágenes!");
@@ -77,46 +92,51 @@ function verificarEdadGaleria() {
 function mostrarGaleria() {
     const imagenes = [
         { 
-            tipo: 'animation-1', 
-            texto: 'Rotación 3D',
-            url: 'https://picsum.photos/300/200?random=1'
+            front: 'https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=300&h=200&fit=crop',
+            back: 'https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?w=300&h=200&fit=crop',
+            texto: 'Teclado → TV Smart'
         },
         { 
-            tipo: 'animation-2', 
-            texto: 'Pulso y Escala',
-            url: 'https://picsum.photos/300/200?random=2'
+            front: 'https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=300&h=200&fit=crop',
+            back: 'https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?w=300&h=200&fit=crop',
+            texto: 'Mouse → Microondas'
         },
         { 
-            tipo: 'animation-3', 
-            texto: 'Rebote Lateral',
-            url: 'https://picsum.photos/300/200?random=3'
+            front: 'https://images.unsplash.com/photo-1586953208448-b95a79798f07?w=300&h=200&fit=crop',
+            back: 'https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?w=300&h=200&fit=crop',
+            texto: 'Monitor → Batidora'
         },
         { 
-            tipo: 'animation-4', 
-            texto: 'Desenfoque Suave',
-            url: 'https://picsum.photos/300/200?random=4'
+            front: 'https://images.unsplash.com/photo-1584670747417-594a9412fba5?w=300&h=200&fit=crop',
+            back: 'https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?w=300&h=200&fit=crop',
+            texto: 'Audífono → Licuadora'
         },
         { 
-            tipo: 'animation-5', 
-            texto: 'Sacudida Inclinada',
-            url: 'https://picsum.photos/300/200?random=5'
+            front: 'https://images.unsplash.com/photo-1600086827875-43a73c5d3c3a?w=300&h=200&fit=crop',
+            back: 'https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?w=300&h=200&fit=crop',
+            texto: 'Joystick → Horno'
         }
     ];
     
     const galeriaHTML = imagenes.map((img, index) => `
-        <div class="image-item ${img.tipo}">
-            <img src="${img.url}" 
-                 alt="${img.texto}"
-                 onerror="this.src='https://via.placeholder.com/300x200/3498db/ffffff?text=Imagen+${index + 1}'">
+        <div class="image-item">
+            <div class="image-container">
+                <img class="image-front" src="${img.front}" 
+                     alt="Imagen frontal ${index + 1}"
+                     onerror="this.src='https://via.placeholder.com/300x200/3498db/ffffff?text=Dispositivo+${index + 1}'">
+                <img class="image-back" src="${img.back}" 
+                     alt="Imagen trasera ${index + 1}"
+                     onerror="this.src='https://via.placeholder.com/300x200/e74c3c/ffffff?text=Electrodoméstico+${index + 1}'">
+            </div>
             <p>${img.texto}</p>
         </div>
     `).join('');
     
     document.getElementById('contenido-pagina').innerHTML = `
         <section class="gallery">
-            <h2>Galería con 5 Animaciones Diferentes</h2>
+            <h2>Galería de Transformación</h2>
             <p style="text-align: center; margin-bottom: 20px; color: #666;">
-                Pasa el cursor sobre cada imagen para ver su animación única
+                Pasa el cursor sobre cada imagen para verla transformarse
             </p>
             <div class="image-grid">${galeriaHTML}</div>
         </section>
@@ -140,6 +160,17 @@ function mostrarAccesoDenegado(edad) {
 // =============================================
 // FUNCIONES PARA CALCULADORA (pagina3.html)
 // =============================================
+
+function inicializarCalculadora() {
+    // Mostrar mensaje de bienvenida personalizado
+    if(usuarioNombreCompleto) {
+        const userDisplay = document.getElementById('user-display-calculator');
+        if(userDisplay) {
+            userDisplay.innerHTML = 
+                `<p class="user-greeting">¡Bienvenido <span class="user-name">${usuarioNombreCompleto}</span> a la Calculadora!</p>`;
+        }
+    }
+}
 
 // Función para sumar
 function calcularSuma() {
@@ -175,17 +206,6 @@ function calcularPromedio() {
     if(num1 !== null && num2 !== null) {
         const resultado = (num1 + num2) / 2;
         mostrarResultado(`El promedio de ${num1} y ${num2} = ${resultado.toFixed(2)}`);
-    }
-}
-
-// Función para multiplicar
-function calcularMultiplicacion() {
-    const num1 = obtenerNumero("primer número para multiplicar");
-    const num2 = obtenerNumero("segundo número para multiplicar");
-    
-    if(num1 !== null && num2 !== null) {
-        const resultado = num1 * num2;
-        mostrarResultado(`El resultado de ${num1} × ${num2} = ${resultado}`);
     }
 }
 
@@ -235,5 +255,8 @@ document.addEventListener('DOMContentLoaded', function() {
         setTimeout(inicializarGaleria, 500);
     }
     
-    // La calculadora no necesita inicialización automática porque usa botones
+    // Verificar si estamos en la calculadora
+    if(currentPage.includes('pagina3.html')) {
+        setTimeout(inicializarCalculadora, 500);
+    }
 });
