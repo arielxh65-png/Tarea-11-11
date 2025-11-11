@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora Interactiva</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Calculadora de Operaciones</h1>
+            <div class="button-container">
+                <a href="index.html" class="animated-btn">Página Principal</a>
+                <a href="pagina2.html" class="animated-btn">Galería de Imágenes</a>
+                <a href="pagina3.html" class="animated-btn">Calculadora</a>
+            </div>
+        </header>
+        
+        <main>
+            <section class="calculator">
+                <h2>Tabla de Operaciones</h2>
+                <table class="operations-table">
+                    <thead>
+                        <tr>
+                            <th class="animated-header">OPERACIÓN</th>
+                            <th class="animated-header">DESCRIPCIÓN</th>
+                            <th class="animated-header">BOTONES</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>SUMA</td>
+                            <td>Suma los 2 números ingresados</td>
+                            <td><button class="calc-btn" onclick="calcularSuma()">CALCULAR</button></td>
+                        </tr>
+                        <tr>
+                            <td>DIVISIÓN</td>
+                            <td>Divide el 1ro número con el 2do ingresado</td>
+                            <td><button class="calc-btn" onclick="calcularDivision()">CALCULAR</button></td>
+                        </tr>
+                        <tr>
+                            <td>PROMEDIO</td>
+                            <td>Promediar los 2 números ingresados</td>
+                            <td><button class="calc-btn" onclick="calcularPromedio()">CALCULAR</button></td>
+                        </tr>
+                        <tr>
+                            <td>MULTIPLICACIÓN</td>
+                            <td>Multiplica los 2 números ingresados</td>
+                            <td><button class="calc-btn" onclick="calcularMultiplicacion()">CALCULAR</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <div id="resultado" class="result-display"></div>
+            </section>
+        </main>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
