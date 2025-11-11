@@ -35,14 +35,15 @@ function inicializarPaginaPrincipal() {
     if(nombre && apellido) {
         usuarioNombreCompleto = `${nombre} ${apellido}`;
         alert(`¡Hola ${usuarioNombreCompleto}! Bienvenido/a a nuestra página principal.`);
-        mostrarNombreUsuario(usuarioNombreCompleto);
+        mostrarMensajeBienvenida('user-display', usuarioNombreCompleto);
     } else {
         alert("¡Bienvenido! Esperamos que disfrutes de nuestro sitio web.");
     }
 }
 
-function mostrarNombreUsuario(nombreCompleto) {
-    const userDisplay = document.getElementById('user-display');
+// Función para mostrar mensaje de bienvenida en todas las páginas
+function mostrarMensajeBienvenida(elementId, nombreCompleto) {
+    const userDisplay = document.getElementById(elementId);
     if(userDisplay) {
         userDisplay.innerHTML = 
             `<p class="user-greeting">Hola, <span class="user-name">${nombreCompleto}</span>. ¡Es un placer tenerte aquí!</p>`;
@@ -58,11 +59,7 @@ function inicializarGaleria() {
     
     // Mostrar mensaje de bienvenida personalizado
     if(usuarioNombreCompleto) {
-        const userDisplay = document.getElementById('user-display-gallery');
-        if(userDisplay) {
-            userDisplay.innerHTML = 
-                `<div class="welcome-message">¡Bienvenido ${usuarioNombreCompleto} a la Galería!</div>`;
-        }
+        mostrarMensajeBienvenida('user-display-gallery', usuarioNombreCompleto);
     }
     
     // a. Mensaje de bienvenida
@@ -92,29 +89,29 @@ function verificarEdadGaleria() {
 function mostrarGaleria() {
     const imagenes = [
         { 
-            front: 'https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=300&h=200&fit=crop',
-            back: 'https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?w=300&h=200&fit=crop',
-            texto: 'Teclado → TV Smart'
+            front: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=300&h=200&fit=crop',
+            back: 'https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=300&h=200&fit=crop',
+            texto: 'Montañas → Bosque'
         },
         { 
-            front: 'https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=300&h=200&fit=crop',
-            back: 'https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?w=300&h=200&fit=crop',
-            texto: 'Mouse → Microondas'
+            front: 'https://images.unsplash.com/photo-1475924156734-496f6cac6ec1?w=300&h=200&fit=crop',
+            back: 'https://images.unsplash.com/photo-1426604966848-d7adac402bff?w=300&h=200&fit=crop',
+            texto: 'Océano → Atardecer'
         },
         { 
-            front: 'https://images.unsplash.com/photo-1586953208448-b95a79798f07?w=300&h=200&fit=crop',
-            back: 'https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?w=300&h=200&fit=crop',
-            texto: 'Monitor → Batidora'
+            front: 'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=300&h=200&fit=crop',
+            back: 'https://images.unsplash.com/photo-1501854140801-50d01698950b?w=300&h=200&fit=crop',
+            texto: 'Bosque → Campo'
         },
         { 
-            front: 'https://images.unsplash.com/photo-1584670747417-594a9412fba5?w=300&h=200&fit=crop',
-            back: 'https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?w=300&h=200&fit=crop',
-            texto: 'Audífono → Licuadora'
+            front: 'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=300&h=200&fit=crop',
+            back: 'https://images.unsplash.com/photo-1519681393784-d120267933ba?w=300&h=200&fit=crop',
+            texto: 'Naturaleza → Montañas'
         },
         { 
-            front: 'https://images.unsplash.com/photo-1600086827875-43a73c5d3c3a?w=300&h=200&fit=crop',
-            back: 'https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?w=300&h=200&fit=crop',
-            texto: 'Joystick → Horno'
+            front: 'https://images.unsplash.com/photo-1439066615861-d1af74d74000?w=300&h=200&fit=crop',
+            back: 'https://images.unsplash.com/photo-1476820865390-c52aeebb9891?w=300&h=200&fit=crop',
+            texto: 'Lago → Cascada'
         }
     ];
     
@@ -122,11 +119,11 @@ function mostrarGaleria() {
         <div class="image-item">
             <div class="image-container">
                 <img class="image-front" src="${img.front}" 
-                     alt="Imagen frontal ${index + 1}"
-                     onerror="this.src='https://via.placeholder.com/300x200/3498db/ffffff?text=Dispositivo+${index + 1}'">
+                     alt="Paisaje ${index + 1}"
+                     onerror="this.src='https://via.placeholder.com/300x200/3498db/ffffff?text=Paisaje+${index + 1}'">
                 <img class="image-back" src="${img.back}" 
-                     alt="Imagen trasera ${index + 1}"
-                     onerror="this.src='https://via.placeholder.com/300x200/e74c3c/ffffff?text=Electrodoméstico+${index + 1}'">
+                     alt="Paisaje transformado ${index + 1}"
+                     onerror="this.src='https://via.placeholder.com/300x200/e74c3c/ffffff?text=Paisaje+Transformado+${index + 1}'">
             </div>
             <p>${img.texto}</p>
         </div>
@@ -134,9 +131,9 @@ function mostrarGaleria() {
     
     document.getElementById('contenido-pagina').innerHTML = `
         <section class="gallery">
-            <h2>Galería de Transformación</h2>
+            <h2>Galería de Transformación de Paisajes</h2>
             <p style="text-align: center; margin-bottom: 20px; color: #666;">
-                Pasa el cursor sobre cada imagen para verla transformarse
+                Pasa el cursor sobre cada imagen para verla transformarse en otro paisaje
             </p>
             <div class="image-grid">${galeriaHTML}</div>
         </section>
@@ -164,11 +161,7 @@ function mostrarAccesoDenegado(edad) {
 function inicializarCalculadora() {
     // Mostrar mensaje de bienvenida personalizado
     if(usuarioNombreCompleto) {
-        const userDisplay = document.getElementById('user-display-calculator');
-        if(userDisplay) {
-            userDisplay.innerHTML = 
-                `<p class="user-greeting">¡Bienvenido <span class="user-name">${usuarioNombreCompleto}</span> a la Calculadora!</p>`;
-        }
+        mostrarMensajeBienvenida('user-display-calculator', usuarioNombreCompleto);
     }
 }
 
@@ -190,7 +183,7 @@ function calcularDivision() {
     
     if(num1 !== null && num2 !== null) {
         if(num2 === 0) {
-            alert("Error: No se puede dividir entre cero.");
+            mostrarResultado("Error: No se puede dividir entre cero.");
             return;
         }
         const resultado = num1 / num2;
@@ -222,16 +215,12 @@ function obtenerNumero(mensaje) {
     return numero;
 }
 
-// Función para mostrar resultados en la calculadora
+// Función para mostrar resultados en la calculadora (se mantienen hasta nueva operación)
 function mostrarResultado(mensaje) {
     const resultadoDiv = document.getElementById('resultado');
     if(resultadoDiv) {
         resultadoDiv.innerHTML = `<p>${mensaje}</p>`;
-        
-        // Limpiar el resultado después de 5 segundos
-        setTimeout(() => {
-            resultadoDiv.innerHTML = '';
-        }, 5000);
+        // Los resultados se mantienen permanentemente hasta que se realice una nueva operación
     }
 }
 
