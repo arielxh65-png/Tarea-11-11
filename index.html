@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página Principal</title>
+    <title>Calculadora Interactiva</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>Bienvenido a Nuestro Sitio Web</h1>
-            <div id="user-display"></div>
+            <h1>Calculadora de Operaciones</h1>
+            <div id="user-display-calculator"></div>
             <div class="button-container">
                 <a href="index.html" class="animated-btn">Página Principal</a>
                 <a href="pagina2.html" class="animated-btn">Galería de Imágenes</a>
@@ -19,9 +19,36 @@
         </header>
         
         <main>
-            <section class="description">
-                <h2>Explora nuestro sitio interactivo</h2>
-                <p>Disfruta de nuestras herramientas dinámicas y aprende de forma entretenida.</p>
+            <section class="calculator">
+                <h2>Tabla de Operaciones</h2>
+                <table class="operations-table">
+                    <thead>
+                        <tr>
+                            <th class="animated-header">OPERACIÓN</th>
+                            <th class="animated-header">DESCRIPCIÓN</th>
+                            <th class="animated-header">BOTONES</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>SUMA</td>
+                            <td>Suma los 2 números ingresados</td>
+                            <td><button class="calc-btn" onclick="calcularSuma()">CALCULAR</button></td>
+                        </tr>
+                        <tr>
+                            <td>DIVISIÓN</td>
+                            <td>Divide el 1ro número con el 2do ingresado</td>
+                            <td><button class="calc-btn" onclick="calcularDivision()">CALCULAR</button></td>
+                        </tr>
+                        <tr>
+                            <td>PROMEDIO</td>
+                            <td>Promedia los 2 números ingresados</td>
+                            <td><button class="calc-btn" onclick="calcularPromedio()">CALCULAR</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <div id="resultado" class="result-display"></div>
             </section>
         </main>
     </div>
