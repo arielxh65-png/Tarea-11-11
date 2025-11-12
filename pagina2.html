@@ -5,59 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Galería de Imágenes</title>
     <link rel="stylesheet" href="styles.css">
-    <style>
-        .image-container {
-            position: relative;
-            width: 100%;
-            height: 200px;
-            overflow: hidden;
-        }
-        
-        .image-front, .image-back {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: opacity 0.5s ease, transform 0.5s ease;
-        }
-        
-        .image-front {
-            opacity: 1;
-            transform: scale(1);
-        }
-        
-        .image-back {
-            opacity: 0;
-            transform: scale(1.1);
-        }
-        
-        .image-item:hover .image-front {
-            opacity: 0;
-            transform: scale(0.9);
-        }
-        
-        .image-item:hover .image-back {
-            opacity: 1;
-            transform: scale(1);
-        }
-        
-        .welcome-message {
-            text-align: center;
-            margin-bottom: 30px;
-            padding: 15px;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: white;
-            border-radius: 10px;
-            font-size: 1.2rem;
-        }
-    </style>
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>Galería de Imágenes Animadas</h1>
+            <h1>Galería de Imágenes</h1>
             <div id="user-display-gallery"></div>
             <div class="button-container">
                 <a href="index.html" class="animated-btn">Página Principal</a>
@@ -65,12 +17,12 @@
                 <a href="pagina3.html" class="animated-btn">Calculadora</a>
             </div>
         </header>
-        
+
         <main id="contenido-pagina">
-            <!-- El contenido se cargará dinámicamente desde script.js -->
+            <!-- La galería o el mensaje de acceso se carga con JavaScript -->
         </main>
     </div>
-    
+
     <script src="script.js"></script>
 </body>
 </html>
