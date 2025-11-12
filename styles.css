@@ -1,46 +1,111 @@
-/* --- REGLAS ADICIONALES PARA ANIMACIÓN DE IMÁGENES (GALERÍA) --- */
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #f7f9fc;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
 
-/* Asegura que el contenedor tenga posición relativa para superponer imágenes */
-.image-container {
-    position: relative;
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+h1 {
+    color: #4c51bf;
+}
+
+.welcome-message {
+    text-align: center;
+    padding: 20px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.button-container {
+    margin-top: 15px;
+}
+
+.animated-btn {
+    display: inline-block;
+    margin: 5px;
+    padding: 10px 15px;
+    background: #667eea;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: background 0.3s;
+}
+
+.animated-btn:hover {
+    background: #764ba2;
+}
+
+.user-greeting {
+    margin: 15px 0;
+    font-weight: bold;
+}
+
+.image-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 15px;
+}
+
+.operations-table {
     width: 100%;
-    height: 200px; /* coincide con tus tamaños de imagen en el JS */
-    overflow: hidden;
+    border-collapse: collapse;
+    margin-top: 20px;
 }
 
-/* Ambas imágenes ocupan todo el contenedor y se acomodan con object-fit */
-.image-front,
-.image-back {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    transition: opacity 0.45s ease, transform 0.45s ease;
-    backface-visibility: hidden;
+.operations-table th, .operations-table td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
 }
 
-/* La "back" está por encima pero oculta inicialmente */
-.image-back {
-    position: absolute;
-    top: 0;
-    left: 0;
-    opacity: 0;
-    transform: scale(1.02);
+.calc-btn {
+    background: #667eea;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 6px;
+    cursor: pointer;
 }
 
-/* Al pasar el cursor, la de frente se desvanece y la de atrás aparece */
-.image-item:hover .image-back {
-    opacity: 1;
-    transform: scale(1);
+.calc-btn:hover {
+    background: #764ba2;
 }
 
-.image-item:hover .image-front {
-    opacity: 0;
-    transform: scale(0.98);
+.result-display {
+    margin-top: 20px;
+    background: #edf2f7;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
 }
 
-/* Mejora para dispositivos táctiles: mostrar la "back" al tocar (simulación) */
-@media (hover: none) and (pointer: coarse) {
-    .image-front { opacity: 0; }
-    .image-back { opacity: 1; }
+.access-denied {
+    text-align: center;
+    padding: 30px;
+    background: #ffe0e0;
+    border-radius: 10px;
+}
+
+.welcome-title {
+    text-align: center;
+    font-size: 1.3rem;
+    margin: 20px 0;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    border-radius: 10px;
+    padding: 10px;
 }
