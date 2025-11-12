@@ -16,6 +16,15 @@ function mostrarMensajeCarga() {
     console.log("Página cargada correctamente");
 }
 
+function mostrarMensajeBienvenida(elementId, nombreCompleto) {
+    const userDisplay = document.getElementById(elementId);
+    const nombre = nombreCompleto && nombreCompleto.trim() ? nombreCompleto : 'visitante';
+    if(userDisplay) {
+        userDisplay.innerHTML =
+            `<p class="user-greeting">Hola, <span class="user-name">${nombre}</span>. ¡Es un placer tenerte aquí!</p>`;
+    }
+}
+
 // =============================================
 // PÁGINA PRINCIPAL (index.html)
 // =============================================
@@ -23,25 +32,27 @@ function mostrarMensajeCarga() {
 function inicializarPaginaPrincipal() {
     console.log("Inicializando página principal...");
     
-    alert("¡Bienvenido a nuestro sitio web interactivo!");
-    
-    let nombre = prompt("Por favor, ingresa tu nombre:");
-    let apellido = prompt("Por favor, ingresa tu apellido:");
-    
-    if(nombre && apellido) {
-        usuarioNombreCompleto = `${nombre} ${apellido}`;
-        alert(`¡Hola ${usuarioNombreCompleto}! Bienvenido/a a nuestra página principal.`);
+    // Solo preguntar si no existe ya un nombre guardado
+    if(!usuarioNombreCompleto) {
+        const nombre = prompt("Por favor, ingresa tu nombre:");
+        const apellido = prompt("Por favor, ingresa tu apellido:");
+        
+        if(nombre && apellido) {
+            usuarioNombreCompleto = `${nombre} ${apellido}`;
+            // persistir en localStorage para navegar entre páginas
+            try { localStorage.setItem('usuarioNombreCompleto', usuarioNombreCompleto); } catch(e) {}
+            alert(`¡Hola ${usuarioNombreCompleto}! Bienvenido/a a nuestra página principal.`);
+            mostrarMensajeBienvenida('user-display', usuarioNombreCompleto);
+            return;
+        }
+    }
+
+    // Si ya existe el nombre guardado mostrarlo
+    if(usuarioNombreCompleto) {
         mostrarMensajeBienvenida('user-display', usuarioNombreCompleto);
     } else {
+        mostrarMensajeBienvenida('user-display', 'visitante');
         alert("¡Bienvenido! Esperamos que disfrutes de nuestro sitio web.");
-    }
-}
-
-function mostrarMensajeBienvenida(elementId, nombreCompleto) {
-    const userDisplay = document.getElementById(elementId);
-    if(userDisplay) {
-        userDisplay.innerHTML = 
-            `<p class="user-greeting">Hola, <span class="user-name">${nombreCompleto}</span>. ¡Es un placer tenerte aquí!</p>`;
     }
 }
 
@@ -52,9 +63,8 @@ function mostrarMensajeBienvenida(elementId, nombreCompleto) {
 function inicializarGaleria() {
     console.log("Inicializando galería...");
     
-    if(usuarioNombreCompleto) {
-        mostrarMensajeBienvenida('user-display-gallery', usuarioNombreCompleto);
-    }
+    // Mostrar bienvenida (si hay nombre guardado, lo mostrará; si no, mostrará 'visitante')
+    mostrarMensajeBienvenida('user-display-gallery', usuarioNombreCompleto);
     
     alert("¡Bienvenido a nuestra galería de imágenes!");
     
@@ -142,9 +152,8 @@ function mostrarAccesoDenegado(edad) {
 // =============================================
 
 function inicializarCalculadora() {
-    if(usuarioNombreCompleto) {
-        mostrarMensajeBienvenida('user-display-calculator', usuarioNombreCompleto);
-    }
+    // Mostrar bienvenida (tanto si hay nombre como si no)
+    mostrarMensajeBienvenida('user-display-calculator', usuarioNombreCompleto);
 }
 
 function calcularSuma() {
@@ -192,9 +201,19 @@ function mostrarResultado(mensaje) {
 document.addEventListener('DOMContentLoaded', function() {
     mostrarMensajeCarga();
     
+    // Intentar recuperar nombre desde localStorage (si existe)
+    try {
+        const stored = localStorage.getItem('usuarioNombreCompleto');
+        if(stored) usuarioNombreCompleto = stored;
+    } catch(e) {
+        // si localStorage falla, continuamos sin persistencia
+        console.warn('No se pudo acceder a localStorage:', e);
+    }
+    
     const currentPage = window.location.pathname;
     
     if(currentPage.includes('index.html') || currentPage === '/' || currentPage.endsWith('/')) {
+        // Dejamos la inicialización de la index para que pregunte el nombre si hace falta
         setTimeout(inicializarPaginaPrincipal, 500);
     }
     
